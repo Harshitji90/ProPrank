@@ -1,94 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funny Prank</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funny Prank</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#111;
-    color:white;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #111;
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
 
-#start{
-    padding:18px 40px;
-    font-size:22px;
-    border:none;
-    border-radius:10px;
-    background:#ff03c8;
-    color:white;
-    cursor:pointer;
-}
+      #start {
+        padding: 18px 40px;
+        font-size: 22px;
+        border: none;
+        border-radius: 10px;
+        background: #ff03c8;
+        color: white;
+        cursor: pointer;
+      }
 
-#prank{
-    display:none;
-    font-size:35px;
-    animation:blink .4s infinite;
-}
+      #prank {
+        display: none;
+        font-size: 35px;
+        animation: blink 0.4s infinite;
+      }
 
-@keyframes blink{
-    50%{
-        color:red;
-    }
-}
-</style>
+      @keyframes blink {
+        50% {
+          color: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="home">
+      <button id="start">🎁 Click Here</button>
+    </div>
 
-</head>
-<body>
+    <div id="prank">
+      😂 GOT YOU 😂
+      <br /><br />
+      This is just a prank!
+    </div>
 
-<div id="home">
-    <button id="start">🎁 Click Here</button>
-</div>
+    <audio id="audio" loop>
+      <source src="prank.mp4" type="audio/mpeg" />
+    </audio>
 
-<div id="prank">
-    😂 GOT YOU 😂
-    <br><br>
-    This is just a prank!
-</div>
+    <script>
+      const btn = document.getElementById("start");
+      const audio = document.getElementById("audio");
 
-<audio id="audio" loop>
-    <source src="prank.mp4" type="audio/mpeg">
-</audio>
+      btn.onclick = async () => {
+        document.getElementById("home").style.display = "none";
+        document.getElementById("prank").style.display = "block";
 
-<script>
+        // Try fullscreen
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
 
-const btn=document.getElementById("start");
-const audio=document.getElementById("audio");
+        // Play audio after the user's click
+        audio.play().catch(() => {});
+      };
 
-btn.onclick=async()=>{
-
-    document.getElementById("home").style.display="none";
-    document.getElementById("prank").style.display="block";
-
-    // Try fullscreen
-    if(document.documentElement.requestFullscreen){
-        document.documentElement.requestFullscreen().catch(()=>{});
-    }
-
-    // Play audio after the user's click
-    audio.play().catch(()=>{});
-};
-
-// If the audio finishes unexpectedly, start it again.
-audio.addEventListener("ended",()=>{
-    audio.currentTime=0;
-    audio.play().catch(()=>{});
-});
-
-</script>
-
-</body>
+      // If the audio finishes unexpectedly, start it again.
+      audio.addEventListener("ended", () => {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      });
+    </script>
+  </body>
 </html>
