@@ -12,25 +12,34 @@
         box-sizing: border-box;
       }
 
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #111;
-        color: white;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
 
+      .phone{
+    width: 390px;      /* iPhone 14/15 width */
+    height: 844px;     /* iPhone 14/15 height */
+
+    background: #044737;
+    color: white;
+
+    border: 10px solid #111;
+    border-radius: 40px;
+
+    overflow: hidden;
+    position: relative;
+
+    margin-left:12cm;
+
+      }
       #start {
         padding: 18px 40px;
         font-size: 22px;
         border: none;
         border-radius: 10px;
-        background: #ff03c8;
+        background: #34685d;
         color: white;
         cursor: pointer;
+
+        margin-top:2cm;
+        margin-left:2cm;
       }
 
       #prank {
@@ -41,34 +50,103 @@
 
       @keyframes blink {
         50% {
-          color: red;
+          color: rgb(123, 255, 0);
         }
       }
     </style>
+    <!-- //======================= -->
+    <style>
+        #stop {
+        padding: 18px 40px;
+        font-size: 22px;
+        border: none;
+        border-radius: 10px;
+        background: #03ffdd;
+        color: rgb(10, 3, 10);
+        cursor: pointer;
+
+        margin-top:2cm;
+        margin-left:2cm;
+      }
+
+      #stopji {
+        display: none;
+        font-size: 35px;
+        animation: blink 0.4s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          color: rgb(0, 195, 255);
+        }
+      }
+    </style>
+
+    <style>
+      #nave{
+        background-color:rgb(141, 241, 10);
+        color:#044737;
+        padding:10px 15px;
+      }
+
+      #title1{
+        color:#111;
+        font-family:monospace;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    </style>
   </head>
-  <body>
+  <body style="background-color: rgb(140, 125, 153);">
+<div class="phone">
+  <div id="nave"><span id="title1">This is the best For Donkey 🫏</span></div>
     <!-- Harshit Test -->
     <div id="home">
       <button id="start">🎁 Click Here</button>
+      <!-- <button type="button" id="stop">Click For Stop</button> -->
     </div>
 
-    <div id="prank">
+    <!-- <div id="prank">
       🥰 GOT YOU 🥰
       <br /><br />
       Love You ❤️ Jan 😘 this is for You !🫵
+    </div> -->
+        <div id="prank">
+      👊 GOT YOU 👊
+      <br /><br />
+      Kya re laude Kya 😁 dekh Reaha hai!🫵
     </div>
 
     <audio id="audio" loop>
-      <source src="thisIsForLove.mp4" type="audio/mpeg" />
+      <source src="tumJaisoKoMarKar.mp4" type="audio/mpeg" />
     </audio>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+ <div> 
+ <br><br>
+    <div id="home1">
+    <button type="button" id="stop">Click For Stop 🤫</button>
+    </div>
 
+    <div id="stopji">Are yoy dunky</div>
+
+    <audio id="stopaudio" loop>
+      <source src="ModiClips.mp4" type="video/mp4">
+    </audio>
+   </div>
+
+</div>
     <script>
       const btn = document.getElementById("start");
       const audio = document.getElementById("audio");
 
       btn.onclick = async () => {
-        document.getElementById("home").style.display = "none";
+
+            // Stop second audio
+              stopaudio.pause();
+              stopaudio.currentTime = 0;
+
         document.getElementById("prank").style.display = "block";
+        document.getElementById("stopji").style.display = "none";
 
         // Try fullscreen
         if (document.documentElement.requestFullscreen) {
@@ -84,6 +162,32 @@
         audio.currentTime = 0;
         audio.play().catch(() => {});
       });
+    </script>
+
+    <script>
+      const stop = document.getElementById("stop");
+const stopaudio = document.getElementById("stopaudio");
+
+stop.onclick = async () => {
+
+      // //stop first audio
+        audio.pause();
+        audio.currentTime=0;
+
+    document.getElementById("prank").style.display = "none";
+    document.getElementById("stopji").style.display = "block";
+
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+    }
+
+    stopaudio.play().catch(err => console.log(err));
+};
+
+stopaudio.addEventListener("ended", () => {
+    stopaudio.currentTime = 0;
+    stopaudio.play().catch(() => {});
+});
     </script>
   </body>
 </html>
